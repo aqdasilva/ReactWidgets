@@ -24,6 +24,10 @@ const Search = () => {
             setResults(data.query.search);
         };
 
+        if (term) {
+            search();
+        }
+
         search();
     }, [term]);
 
@@ -31,7 +35,12 @@ const Search = () => {
         return (
             <div key={result.pageid} className="item">
                 <div className="right floated content">
-                    <a className="ui button">Go</a>
+                    <a 
+                        qclassName="ui button"
+                        href={`https://en.wikipedia.org?curid=${result.pageid}`}
+                    >
+                        Go
+                    </a>
                 </div>
                 <div className="content">
                     <div className="header">
