@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
+import Translate from "./Translate";
 
 
-const Dropdown = ( { options, selected, onSelectedChange }) => {
+const Dropdown = ( { label, options, selected, onSelectedChange }) => {
     const [open, setOpen] = useState(false);
     const ref = useRef();
 
@@ -10,7 +11,7 @@ const Dropdown = ( { options, selected, onSelectedChange }) => {
             if ( ref.current.contains(event.target)) {
                 return;
             }
-            
+
             setOpen(false);
         };
 
@@ -42,9 +43,10 @@ const Dropdown = ( { options, selected, onSelectedChange }) => {
     return (
         <div  ref={ref} className="ui form">
             <div className="field">
-                <label className="label">Select your favorite color</label>
-                <div onClick={() => setOpen(!open)} 
-                className={`ui selection dropdown ${open ? 'visible active' : ''}`}
+                <label className="label">{label}</label>
+                <div 
+                    onClick={() => setOpen(!open)} 
+                    className={`ui selection dropdown ${open ? 'visible active' : ''}`}
                 >
                     <i className="dropdown icon"></i>
                     <div className="text">{selected.label}</div>
